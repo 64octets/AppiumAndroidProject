@@ -3,12 +3,11 @@ package appiumDemo;
 import io.appium.java_client.AppiumDriver;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import junit.framework.Assert;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -29,7 +28,7 @@ public class wordpressTest {
 		capabilities.setCapability("browserName", "");
 		capabilities.setCapability("deviceName", "emulator-5554");
 		
-		capabilities.setCapability("platformVersion", "4.4.2");
+		capabilities.setCapability("platformVersion", "19");
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("app", app.getAbsolutePath());
 		capabilities.setCapability("appPackage", "org.wordpress.android");
@@ -45,9 +44,7 @@ public class wordpressTest {
 		
 		driver.findElement(By.id("org.wordpress.android:id/nux_username")).sendKeys("Avtor");
 		driver.findElement(By.id("org.wordpress.android:id/nux_password")).sendKeys("avpass");
-		//
 		driver.findElement(By.id("org.wordpress.android:id/nux_sign_in_button")).click();
-//		
 		
 		Assert.assertEquals(driver.findElement(By.id("org.wordpress.android:id/nux_dialog_title")).getText(), ERRORTEXT);
 		
