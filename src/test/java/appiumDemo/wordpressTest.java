@@ -7,12 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class wordpressTest {
 	
+	private static final String ERRORTEXT = "We can't log you in";
 	public AppiumDriver driver;
 
 	@Before
@@ -35,13 +39,18 @@ public class wordpressTest {
 		driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
-
+	
+	@Test
 	public void testUI() {
 		
-//		driver.findElement(By.id("org.wordpress.android:id/nux_username")).sendKeys("Avtor");
-//		driver.findElement(By.id("org.wordpress.android:id/nux_password")).sendKeys("avpass");
-//		//
-//		driver.findElement(By.id("org.wordpress.android:id/nux_sign_in_button")).click();
+		driver.findElement(By.id("org.wordpress.android:id/nux_username")).sendKeys("Avtor");
+		driver.findElement(By.id("org.wordpress.android:id/nux_password")).sendKeys("avpass");
+		//
+		driver.findElement(By.id("org.wordpress.android:id/nux_sign_in_button")).click();
+//		
+		
+		Assert.assertEquals(driver.findElement(By.id("org.wordpress.android:id/nux_dialog_title")).getText(), ERRORTEXT);
+		
 		
 		
 
